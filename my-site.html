@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!-- ============================================
+     SHAYNA'S FIRST WEBSITE
+     ============================================
+     Hi! This whole file IS the website.
+     Every line has a note explaining what it does.
+     Change anything, save the file, then refresh
+     your browser to see what happened. Break it
+     on purpose - that's how you learn. Undo is
+     Ctrl+Z. Have fun!
+     ============================================ -->
+
+<!-- This tells the browser the page is in English -->
+<html lang="en">
+
+<!-- The <head> is info ABOUT the page. None of it shows on the page itself -->
+<head>
+  <!-- Makes Hebrew and emoji show up correctly -->
+  <meta charset="UTF-8">
+  <!-- Makes the page fit nicely on a phone screen -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- The text on the browser tab -->
+  <title>Shayna's corner of the internet</title>
+  <!-- Everything inside <style> is CSS: the rules for how things LOOK -->
+  <style>
+    /* "body" is the whole page. These rules paint the background */
+    body {
+      /* A smooth color blend from lavender to peach */
+      background: linear-gradient(135deg, #e0c3fc 0%, #ffd6a5 100%);
+      /* The font for all text (a list of backups if one is missing) */
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif;
+      /* No weird default spacing at the edges */
+      margin: 0;
+      /* Center everything and give breathing room */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 16px;
+      /* Dark purple-gray text color */
+      color: #3d3356;
+    }
+    #swipeHeader {
+  width: 50%;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 20px 20px;
+  transition: background-image 0.4s ease;
+  touch-action: pan-y;
+}
+
+#headerText {
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+    /* The big title at the top */
+    h1 {
+      font-size: 2.2rem;           /* rem = "relative to normal text size" */
+      margin-bottom: 4px;
+      text-align: center;
+      /* Makes the TEXT itself a gradient - a fun trick! */
+      background: linear-gradient(90deg, #7b2ff7, #f107a3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* The smaller line under the title */
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.75;                /* slightly see-through = softer look */
+      margin-top: 0;
+    }
+    
+    
+
+    /* The white rounded boxes that hold each section */
+    .card {
+      background: white;
+      border-radius: 20px;          /* round corners - try 0px and see! */
+      padding: 20px 24px;
+      margin: 12px 0;
+      max-width: 480px;
+      width: 100%;
+      /* A soft shadow so the card "floats" */
+      box-shadow: 0 8px 24px rgba(123, 47, 247, 0.15);
+      box-sizing: border-box;       /* keeps padding inside the width */
+    }
+    .card1 {
+        background: white;
+        border-radius: 20px;
+        padding: 20px 24px;
+        margin: 12px 0;
+        max-width: 480px;
+        width: 100%;
+        box-shadow: 0 8px 24px rgba(123, 47, 247, 0.15);
+        box-sizing: border-box;
+    }
+    .bubble {
+  background-color: turquoise;
+  color: white;
+  padding: 5px 13px;
+  border-radius: 20px; /* makes it bubbly */
+  font-weight: bold;
+  font-family: sans-serif;
+  display: inline-block;
+}
+.bubble1 {
+  color: red;
+  font-weight: 900;
+  font-size: 1.4em;
+  -webkit-text-stroke: 2px white;
+  text-shadow:
+      3px 3px  0px  darkred;
+      6px 6px  0px  rbga(0,0,0,0.2);
+  letter-spacing: 2px;
+}
+
+    /* The little heading inside each card */
+    .card h2 {
+    background: blue
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+    .card1 h1 {
+        color: #6BDAFF;
+        font-weight: bold;
+        letter-spacing: 2px
+    }
+
+    /* The button! */
+    button {
+      background: linear-gradient(90deg, #7b2ff7, #f107a3);
+      color: white;
+      border: none;                 /* removes the ugly default border */
+      border-radius: 999px;         /* huge number = pill shape */
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-family: inherit;         /* use the same font as the page */
+      cursor: pointer;              /* hand cursor on hover */
+      /* Smooth animation for the hover effect below */
+      transition: transform 0.15s ease;
+    }
+
+    /* What happens when the mouse is over the button */
+    button:hover {
+      transform: scale(1.08);       /* grows 8% - playful! */
+    }
+
+    /* What happens the moment you click */
+    button:active {
+      transform: scale(0.95);       /* squishes - feels like a real button */
+    }
+    
+
+    /* The message that appears when the button is pressed */
+    #text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      min-height: 1.5em;            /* keeps space so the page doesn't jump */
+      text-align: center;
+    }
+
+    /* Each emoji that rains down when you press the button */
+    .confetti {
+      position: fixed;              /* floats over everything */
+      top: -40px;                   /* starts just above the screen */
+      font-size: 24px;
+      /* The falling animation: name, seconds, speed curve */
+      animation: fall 2.5s linear forwards;
+      pointer-events: none;         /* clicks pass through them */
+    }
+
+    /* The "fall" animation: how a confetti moves from top to bottom */
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);  /* vh = screen height */
+        opacity: 0;                 /* fades out as it lands */
+      }
+    }
+    myDiv {
+        border: 5px outset blue;
+        background-color: linear-gradient;
+        text-align: center;
+    }
+    .link {
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#popupBg {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+#popupBox {
+  background: white;
+  width: 80%;
+  max-width: 300px;
+  margin: 50% auto;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+}
+#popupBox button {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 10px;
+}
+
+    /* The code box at the bottom */
+    pre {
+      background: #2d2545;          /* dark box, like a real code editor */
+      color: #e8e0ff;
+      padding: 16px;
+      border-radius: 12px;
+      overflow-x: auto;             /* scroll sideways on a phone */
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    /* The tiny line at the very bottom */
+    footer {
+      margin-top: 24px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<!-- The <body> is everything you actually SEE on the page -->
+<body>
+  <div id="swipeHeader">
+  <div id="headerText">Swipe me →</div>
+</div>
+  <!-- The main heading. h1 = biggest heading. Change the words! -->
+  <h1>✨ Shayna's corner of the internet ✨</h1>
+  <!-- A smaller line under it. The class="subtitle" connects it to the CSS above -->
+  <p class="subtitle">built by me, broken by me, fixed by me</p>
+
+  <!-- CARD 1: about me -->
+  <div class="card">
+    <h2>👋 Hi, I'm <span id="colorWord" class="bubble">Shayna</span></h2>
+    <p>I'm 15, I live in Montreal, and I'm teaching myself to code.
+       This page is my first website - every line of it is <u>mine</u> to mess with.</p>
+  </div>
+
+  <!-- CARD 2: things I like. The <ul> is a bulleted list, each <li> is one bullet -->
+  <div class="card">
+    <h2>💜 Stuff I'm into</h2>
+    <ul>
+      <li>💻 Coding (obviously)</li>
+      <li>🚩 picoCTF - beginner hacking puzzles</li>
+      <li>🎬 Creating AI videos</li>
+      <li>🖍️ Drawingggggg</li>
+    </ul>
+  </div>
+
+  <!-- CARD 3: the fun button. id="message" lets the JavaScript find this exact spot -->
+  <div class="card" style="text-align: center;">
+    <h2>🎉 The<span class="bubble1"> BUTTON</span></h2>
+    <p id="text">press it. I know you want to.</p>
+    <!-- onclick runs the celebrate() function from the JavaScript below -->
+    <button onclick="celebrate()">Press me</button>
+    <p id="text"></p>
+  </div>
+  <div class="card1" style="text-align: center" >
+      <h1>Isn't this great⁉️⁉️⁉️</h1>
+  </div>
+      
+   <div class="myDiv">
+          <h3>FOR IDEAS TO MAKE THIS SITE BETTER</h3>
+          <div style="text-align: center" >
+          <p>contact <u>Shayna</u> at:</p>
+          </div>
+         <ul>
+             <div style="text-align: left">
+            <li>📞 <span id="myPhone" class="link">249-496-2277</span></li>
+            <p>OR</p>
+            <li>🧏‍♀️ <span id="myEmail" class="link">sch832216@gmail.com</span></li>
+            <div id="popupBg"><div id="popupBox"><div></div>
+            </div>
+         </ul>
+   
+    </div>
+  <!-- The tiny credit line at the bottom -->
+  <footer>made with curiosity · made for fun</footer>
+
+  <!-- Everything inside <script> is JavaScript: what the page DOES -->
+  <script>
+    const images = [
+   "https://picsum.photos/id/1015/800/400",
+   "5ppl.jpg",
+   "3ppl.jpg",
+];
+
+const texts = [
+  "Welcome to my site 🪀",
+  "Swipe again! 🫆",
+  "Oh, yes! 🔆"
+];
+
+let bgIndex = -1;
+let startX = 0;
+let hasStarted = false;
+
+const header = document.getElementById("swipeHeader");
+const headerText = document.getElementById("headerText");
+
+// Preload so photos show right away
+// Strong preload 
+for (let src of images) {
+  let img = new Image();
+  img.src = src;
+  console.log("Preloading: " + src);
+}
+
+header.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+header.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  if (Math.abs(endX - startX) > 50) {
+    nextBackground();
+  }
+});
+
+header.addEventListener("mousedown", e => startX = e.clientX);
+header.addEventListener("mouseup", e => {
+  if (Math.abs(e.clientX - startX) > 50) nextBackground();
+});
+
+function nextBackground() {
+  if (!hasStarted) {
+    hasStarted = true;
+    bgIndex = 0;
+  } else {
+    bgIndex = (bgIndex + 1) % images.length;
+  }
+  header.style.backgroundImage = `url('${images[bgIndex]}')`;
+  headerText.innerText = texts[bgIndex];
+}
+const word = document.getElementById("colorWord");
+const colors = ["red", "blue", "yellow", "lime", "pink", "purple"];
+let colorIndex = 0;
+
+word.addEventListener("click", function() {
+  colorIndex = (colorIndex + 1) % colors.length;
+  word.style.color = colors[colorIndex];
+});
+    // A list of lines. The button picks a random one each time.
+    // Add your own! Just copy a line and change the words.
+    const lines = [
+      "you pressed it. legend.",
+      "again! again!",
+      "this website is officially fun now",
+      "try harder💪",
+      "100/100 button pressing skills",
+      "k, this is a blast",
+      "now try changing my code 😏"
+    ];
+    let  currentIndex = 0;
+
+    // The emojis that rain from the top of the screen
+    const emojis = ["✨", "💜", "🎉", "⭐", "💻", "🚀"];
+
+    // This function runs every time the button is clicked.
+    // A function is just a saved set of steps with a name.
+    function celebrate() {
+      // Step 1: pick a random message and show it.
+      // Math.random() gives a decimal like 0.42, and the rest
+      // turns it into a whole number pointing at 
+      document.getElementById("text").innerText = lines[currentIndex];
+      currentIndex = (currentIndex + 1) % lines.length;
+      
+
+      // Step 2: make 30 emoji confetti pieces.
+      // A "for loop" repeats the same steps - 30 times here.
+      for (let i = 0; i < 30; i++) {
+        // Create a new <span> (a tiny invisible box for text)
+        const piece = document.createElement("span");
+        // Give it the "confetti" style from the CSS above
+        piece.className = "confetti";
+        // Put a random emoji inside it
+        piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        // Start it at a random horizontal spot (0 to 100% across the screen)
+        piece.style.left = Math.random() * 100 + "vw";
+        // Make each one fall at a slightly different speed
+        piece.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+        // Actually add it to the page
+        document.body.appendChild(piece);
+        // Remove it after 4 seconds so the page stays clean
+        setTimeout(() => piece.remove(), 4000);
+      }
+    }
+    const phone = "249-496-2277"; // your number
+const email = "sch832216@gmail.com"; // your email
+
+const popupBg = document.getElementById("popupBg");
+const popupBox = document.getElementById("popupBox");
+
+document.getElementById("myPhone").addEventListener("click", function() {
+  popupBox.innerHTML = `
+    <h3>${phone}</h3>
+    <button onclick="window.location.href='tel:${phone}'" style="background: purple; color: white;">📞 Call</button>
+    <button onclick="window.location.href='sms:${phone}'" style="background: #C2C299; color: white;">💬 Message</button>
+    <button onclick="window.location.href='https://wa.me/${phone}'" style="background: #3FA69B; color: white;">WhatsApp</button>
+    <button onclick="copyText('${phone}')" style="background: blue; color: white;">📋 Copy</button>
+    <button onclick="closePopup()" style="background: #463770; color: white;">Close</button>
+  `;
+  popupBg.style.display = "block";
+});
+
+document.getElementById("myEmail").addEventListener("click", function() {
+  popupBox.innerHTML = `
+    <h3>${email}</h3>
+    <button onclick="window.location.href='mailto:${email}'">📧 Email</button>
+    <button onclick="window.location.href='https://chat.google.com/'">Google Chat</button>
+    <button onclick="copyText('${email}')">📋 Copy</button>
+    <button onclick="closePopup()">Close</button>
+  `;
+  popupBg.style.display = "block";
+});
+
+function closePopup(){ popupBg.style.display = "none"; }
+function copyText(text){ navigator.clipboard.writeText(text); alert("Copied: " + text); closePopup(); }
+popupBg.addEventListener("click", function(e){ if(e.target == popupBg) closePopup(); });
+  
+  </script>
+</body>
+</html>
